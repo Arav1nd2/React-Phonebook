@@ -23,7 +23,7 @@ class Forms extends Component {
 
         this.handleVerify = (e) => {
             e.preventDefault();
-            if(this.state.name !== "" && !isNaN(this.state.phone)) {
+            if(this.state.name !== "" && !(isNaN(this.state.phone) || this.state.phone === "")) {
                 if(!this.props.checkNumber(this.state.phone)) {
                     this.handleAdd();
                 }
@@ -38,7 +38,7 @@ class Forms extends Component {
                     nameErr : true
                 });
             }
-            if(isNaN(this.state.phone)) {
+            if(isNaN(this.state.phone) || this.state.phone === "") {
                 this.setState({
                     phoneErr : true
                 });

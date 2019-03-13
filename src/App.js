@@ -4,6 +4,7 @@ import './App.css';
 import Forms from './components/Forms';
 import Lists from './components/List';
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -57,8 +58,8 @@ class App extends Component {
     data.forEach((item , id) => {
       let str =(item.name + " " + item.phone).toLowerCase();
           if(str.indexOf((this.state.search.toLowerCase())) !== -1) {
-            jsx.push(
-              <Lists id = {id} name = {item.name} phone = {item.phone} uid = {item.id} updateData = {this.updateData} key = {item.id}/>
+            jsx.push(           
+                <Lists id = {id} name = {item.name} phone = {item.phone} uid = {item.id} updateData = {this.updateData} key = {item.id}/>
             );      
           }
     }); 
@@ -68,19 +69,19 @@ class App extends Component {
           <br/><br/>
           <div className = "container">
                 <Forms search = {this.state.search} handleSearch = {this.handleSearch} handleNewPhone = {this.handleAdd} checkNumber = {this.checkNumber}/>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>Name</th>
-                      <th>Phone</th>
-                      <th> </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {jsx}
-                  </tbody>
-                </table>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th> </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {jsx}
+                    </tbody>
+                  </table>
           </div>
       </div>
     );
