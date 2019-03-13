@@ -105,11 +105,11 @@ class Lists extends Component {
                 modalState : !this.state.modalState
                 });
             return this.state.modalState;
-            } }>
+            } } className = 'row-wrapper'>
                 <td>{this.props.id+1}</td>
                 <td>{this.props.name}</td>
                 <td>{this.props.phone}</td>
-                <td>Edit</td>
+                <td><i class="fas fa-pencil-alt" aria-hidden="true"></i></td>
             </tr>
             </>
         );

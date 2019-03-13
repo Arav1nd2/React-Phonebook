@@ -41,3 +41,8 @@ body {
   .input-field .prefix.active {
     color: #000 !important;
   }
+
+tr:hover {
+  transform : scale(1.05);
+  border-bottom: 2px solid black;
+}

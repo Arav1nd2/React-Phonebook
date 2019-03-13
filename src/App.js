@@ -81,12 +81,12 @@ class App extends Component {
                 <Forms search = {this.state.search} handleSearch = {this.handleSearch} handleNewPhone = {this.handleAdd} checkNumber = {this.checkNumber}/>
                   <table >
                     <thead>
-                      <tr>
+                      <>
                         <th>Id</th>
                         <th>Name</th>
                         <th>Phone</th>
                         <th> </th>
-                      </tr>
+                      </>
                     </thead>
                     <tbody>
                       {jsx}
