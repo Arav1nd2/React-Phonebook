@@ -14,6 +14,7 @@ class App extends Component {
       searchRes : []
     }
     this.handleSearch = (e) => {
+      e.preventDefault();
       this.setState({
         search: e.target.value
       });
@@ -24,6 +25,7 @@ class App extends Component {
         this.setState({
           items : newItems
         });
+        localStorage.setItem('phonebook',JSON.stringify(newItems));
     }
     this.checkNumber = (num) => {
       let {items} = this.state
@@ -49,9 +51,17 @@ class App extends Component {
       this.setState({
         items : data
       });
+      localStorage.setItem('phonebook',JSON.stringify(data));
   }
   }
-  
+  componentDidMount() {
+    let data = localStorage.getItem('phonebook');
+    if(data) {
+      this.setState({
+        items : JSON.parse(data)
+      });
+    }
+  }
   render() {
     let data = this.state.items;
     let jsx = [];
@@ -69,7 +79,7 @@ class App extends Component {
           <br/><br/>
           <div className = "container">
                 <Forms search = {this.state.search} handleSearch = {this.handleSearch} handleNewPhone = {this.handleAdd} checkNumber = {this.checkNumber}/>
-                  <table>
+                  <table >
                     <thead>
                       <tr>
                         <th>Id</th>
@@ -82,6 +92,8 @@ class App extends Component {
                       {jsx}
                     </tbody>
                   </table>
+            <br/><br/>
+            <p className = "grey-text">You have {jsx.length} contact(s).</p>
           </div>
       </div>
     );

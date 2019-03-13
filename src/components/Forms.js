@@ -72,7 +72,9 @@ class Forms extends Component {
                             {this.state.phoneErr && <span className = "helper-text red-text" >Please enter a valid Phone number</span>}
                             {this.state.phoneRep && <span className = "helper-text red-text" >Number already exists in the directory!</span>}
                         </div>
-                        <button type = "submit" className = "btn waves-effect waves-orange">Add</button>    
+                        <div className = "col s2">
+                            <button type = "submit" className = "btn add-btn">Add</button>    
+                        </div>
                     </div>
                 </form>
                 <form className = "col s12">

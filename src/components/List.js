@@ -7,8 +7,35 @@ class Lists extends Component {
         this.state = {
             modalState : false,
             name: "/",
-            phone : "/"
+            phone : "/",
+            nameErr: false,
+            phoneErr: false,
+            phoneRep: false
         }
+
+        this.handleVerify = () => {
+            if((this.state.name !== "" || this.state.name !== "/") && !(isNaN(this.state.phone) || (this.state.phone === "" || this.state.phone === "/"))) {
+                if(!this.props.checkNumber(this.state.phone)) {
+                    this.handleUpdateClick();
+                }
+                else {
+                    this.setState({
+                        phoneRep: true
+                    });
+                }
+            }
+            if(this.state.name === "") {
+                this.setState({
+                    nameErr : true
+                });
+            }
+            if(isNaN(this.state.phone) || this.state.phone === "") {
+                this.setState({
+                    phoneErr : true
+                });
+            }   
+        }
+
         this.handleChange = (e) => {
             this.setState({
                 [e.target.name] : e.target.value
@@ -23,7 +50,10 @@ class Lists extends Component {
             this.setState({
                 modalState : false,
                 name: "/",
-                phone : "/"
+                phone : "/",
+                nameErr: false,
+                phoneErr: false,
+                phoneRep: false
             });
         }
         this.handleUpdateClick = () => {
@@ -37,7 +67,10 @@ class Lists extends Component {
             this.setState({
                 modalState : false,
                 name: "/",
-                phone : "/"
+                phone : "/",
+                nameErr: false,
+                phoneErr: false,
+                phoneRep: false
             });
         }
     }
@@ -55,14 +88,17 @@ class Lists extends Component {
             <div className = "row">
                 <div className = "input-field col s6">
                     <input placeholder = "Name" name = "name" value = {this.state.name !== "/" ? this.state.name : this.props.name} onChange = {this.handleChange} />
+                    {this.state.nameErr && <span className = "helper-text red-text" >Please enter a valid Name</span>}
                 </div>
                 <div className = "input-field col s6">
                     <input placeholder = "Phone" name = "phone" value = {this.state.phone !== "/" ? this.state.phone : this.props.phone} onChange = {this.handleChange} />
+                    {this.state.phoneErr && <span className = "helper-text red-text" >Please enter a valid Phone number</span>}
+                    {this.state.phoneRep && <span className = "helper-text red-text" >Number already exists in the directory!</span>}
                 </div>
             </div>
             <div className = "row">
-                <button className = "btn" onClick = {this.handleUpdateClick}>Update</button>
-                <button className = "btn" onClick = {this.handleDeleteClick}>Delete</button>
+                <button className = "btn modal-btn" onClick = {this.handleUpdateClick}>Update</button>
+                <button className = "btn delete-btn" onClick = {this.handleDeleteClick}>Delete</button>
             </div>
             </Modal>    
             <tr onClick = {() => {this.setState({
