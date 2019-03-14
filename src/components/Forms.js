@@ -11,7 +11,7 @@ class Forms extends Component {
             phoneErr: false,
             phoneRep: false
         }
-
+        // Function to handle changes in the input forms
         this.handleChange = (e) => {
             this.setState({
                 nameErr: false,
@@ -20,7 +20,7 @@ class Forms extends Component {
                 [e.target.name]: e.target.value
             });
         }
-
+        // Function to handle form validation
         this.handleVerify = (e) => {
             e.preventDefault();
             if(this.state.name !== "" && !(isNaN(this.state.phone) || this.state.phone === "")) {
@@ -45,6 +45,7 @@ class Forms extends Component {
             }
             
         }
+        // Function to add new number to directory
         this.handleAdd = () => {
             this.props.handleNewPhone({id: uuid(), ...this.state});
             this.setState({

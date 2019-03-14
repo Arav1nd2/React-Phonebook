@@ -36,11 +36,13 @@ class Lists extends Component {
             }   
         }
 
+        // Function to handle changes in the input fields
         this.handleChange = (e) => {
             this.setState({
                 [e.target.name] : e.target.value
             });
         }
+        // Function to handle deletion 
         this.handleDeleteClick = () => {
             let prop = {
                 type : "Delete",
@@ -56,6 +58,7 @@ class Lists extends Component {
                 phoneRep: false
             });
         }
+        // Function to handle update
         this.handleUpdateClick = () => {
             let prop = {
                 type : "Update",
@@ -74,6 +77,7 @@ class Lists extends Component {
             });
         }
     }
+    // Set the data to the props when mounted
     componentDidMount() {
         this.setState({
             name : this.props.name,

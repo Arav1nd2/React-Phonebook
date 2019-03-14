@@ -13,20 +13,25 @@ class App extends Component {
       items: [],
       searchRes : []
     }
+    // Function to handle searches
     this.handleSearch = (e) => {
       e.preventDefault();
       this.setState({
         search: e.target.value
       });
     }
+    // Function to add new number to the list
     this.handleAdd = (data) => {
         let newItems = this.state.items;
         newItems.push(data);
         this.setState({
           items : newItems
         });
+        // Set the same data in localStorage also
         localStorage.setItem('phonebook',JSON.stringify(newItems));
     }
+
+    // Checks whether number num already exists in the directory. If yes return true else false
     this.checkNumber = (num) => {
       let {items} = this.state
       for(var i=0;i<items.length;i++) {
@@ -36,6 +41,8 @@ class App extends Component {
       }
       return false;
     }
+
+    // A function to handle any updates (or) deletes
     this.updateData = (prop) => {
       let data = this.state.items;
       if(prop.type === "Delete") {
@@ -51,10 +58,12 @@ class App extends Component {
       this.setState({
         items : data
       });
+      // Update the same in localStorage also
       localStorage.setItem('phonebook',JSON.stringify(data));
   }
   }
   componentDidMount() {
+    // Fetch the data from localstorage when the component mounts
     let data = localStorage.getItem('phonebook');
     if(data) {
       this.setState({
